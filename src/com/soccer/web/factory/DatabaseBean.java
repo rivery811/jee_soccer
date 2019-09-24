@@ -18,6 +18,8 @@ public class DatabaseBean implements Serializable {
 		this.driver = driver;
 		
 		
+		
+		
 	}
 	public Connection getConnection() {
 		try {

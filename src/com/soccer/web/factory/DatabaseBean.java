@@ -16,6 +16,8 @@ public class DatabaseBean implements Serializable {
 		this.userid = userid;
 		this.password = password;
 		this.driver = driver;
+		
+		
 	}
 	public Connection getConnection() {
 		try {

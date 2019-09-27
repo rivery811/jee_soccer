@@ -3,6 +3,8 @@ package com.soccer.web.serviceimpls;
 
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+
 import com.soccer.web.daoimpls.PlayerDAOImpl;
 import com.soccer.web.daos.PlayerDAO;
 import com.soccer.web.domains.PlayerBean;
@@ -20,6 +22,13 @@ public class PlayerServiceImple implements Playerservice{
 	private PlayerServiceImple() {}
 
 	@Override
+	public PlayerBean login(PlayerBean param) {
+		System.out.println("서비스임플로그인");
+		System.out.println(param.getPlayerId()+param.getSolar());
+		
+		return PlayerDAOImpl.getInstance().selectByplayeridsolar(param);
+	}
+	@Override
 	public List<String> findPositions() {
 	
 		return PlayerDAOImpl.getInstance().selectPositions();
@@ -36,5 +45,6 @@ public class PlayerServiceImple implements Playerservice{
 		List<PlayerBean> players = PlayerDAOImpl.getInstance().selectByTeamidHeightName(param);	
 		return players;
 	}
+
 
 }

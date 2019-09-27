@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.soccer.web.commands.Commander;
+import com.soccer.web.commands.Reciever;
+import com.soccer.web.commands.SearchCommand;
+import com.soccer.web.commands.Sender;
 import com.soccer.web.domains.PlayerBean;
 import com.soccer.web.serviceimpls.PlayerServiceImple;
 import com.soccer.web.services.Playerservice;
@@ -20,54 +24,19 @@ public class PlayerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PlayerBean player = null;
+	System.out.println("컨트롤러진입");
+	System.out.println(request.getParameter("playerId"));
+	System.out.println(request.getParameter("solar"));
+	System.out.println(request.getParameter("action"));
+	System.out.println(request.getParameter("page"));
+		//Commander commander = new Commander();
+		Reciever.init(request);
+       // Reciever.command.execute();
+	
 		
-		switch (request.getParameter("action")) {
-		case "move":
-			List<String> list = PlayerServiceImple.getInstance().findPositions();
-			
-			
-			request.setAttribute("positions", list);
+		Sender.forward(request, response);
 
-			break;
-		case "2_position":
-		
-			request.setAttribute("positions",  PlayerServiceImple.getInstance().findPositions());
 	
-			break;
-		case "4_find_by_teamid_position":
-			String teamId= request.getParameter("teamId");
-			String position = request.getParameter("position");
-			player = new PlayerBean();
-			
-			player.setTeamId(teamId);
-			player.setPosition(position);
-			System.out.println(player.getTeamId()+player.getPosition());
-			request.setAttribute("players",PlayerServiceImple.getInstance().findByTeamidPosition(player));
-			
-
-			break;
-			
-		case "5_find_by_teamid_height_name":
-			player = new PlayerBean();
-			player.setTeamId(request.getParameter("teamId"));
-			player.setHeight(request.getParameter("height"));
-			player.setPlayerName(request.getParameter("playerName"));
-	
-			request.setAttribute("players",PlayerServiceImple.getInstance().findByTeamidHeightName(player));
-			
-			
-
-			break;
-	
-
-		default:
-			break;
-			
-		}
-	
-		request.getRequestDispatcher
-		(String.format("WEB-INF/views/%s.jsp",request.getParameter("page"))).forward(request, response);
 	
 	}
 

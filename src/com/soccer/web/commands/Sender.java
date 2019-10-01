@@ -10,7 +10,7 @@ public class Sender {
 
 		
 		public static void forward(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(Reciever.command.getView());
+		System.out.println("¼¾´õ"+Reciever.command.getView());
 			try {
 			request
 			.getRequestDispatcher(Reciever.command.getView())

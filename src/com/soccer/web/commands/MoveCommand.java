@@ -14,7 +14,7 @@ public class MoveCommand extends Command {
 	public void execute() {
 		setPage(request.getParameter("page"));
 		super.execute();
-		System.out.println(request.getServletPath());
+		System.out.println("무브커맨드"+request.getServletPath());
 		
 	
 	}

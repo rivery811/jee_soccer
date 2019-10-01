@@ -40,7 +40,9 @@ public class FacadeController extends HttpServlet {
 				String.format(Constants.DOUBLE_PATH, 
 						request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"login"))
 		.forward(request, response);
-	
+	System.out.println("퍼사드"+request.getServletPath());
+	System.out.println("퍼사드"+String.format(Constants.DOUBLE_PATH, 
+			request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"login"));
 	}
 }
 

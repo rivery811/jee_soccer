@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-</head>
-<body>
+<jsp:include page="../common/head.jsp"/>
 <h2><a id = "btn2" href="#">2.포지션찾기</a></h2>
 <form id="btn4" action="<%=request.getContextPath()%>/player.do">
 팀아이디<input type="text" name="teamId" />
@@ -30,7 +21,7 @@
 </form>
 
 	
-	
+<jsp:include page = "../common/foot.jsp"/>	
 <script>
 $('#btn2').click(function() {
 	alert('클릭');
@@ -43,5 +34,3 @@ $('#btn5').submit(function() {
 	alert('찾기5');
 });
 </script>
-</body>
-</html>

@@ -13,6 +13,8 @@ public class LoginCommand extends Command{
 		setAction(request.getParameter("action"));
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		execute();
+		System.out.println("도메인"+getDomain());
+		System.out.println("로그인커맨드"+request.getServletPath());
 	}
 	
 	@Override
@@ -24,12 +26,12 @@ public class LoginCommand extends Command{
 		System.out.println("로그인커맨드"+param.getPlayerId());
 		System.out.println("로그인커맨드"+param.getSolar());
 		param = PlayerServiceImple.getInstance().login(param);
-		System.out.println("디비에서 커맨드로 전달된 로그인객체"+param.toString());
-		if(!param.getPlayerId().equals("")) {
-			setPage(request.getParameter("page"));
-		}else {
-			setPage("index.jsp");
-		}
+		//System.out.println("디비에서 커맨드로 전달된 로그인객체"+param.toString());
+
+			
+		setPage((param!=null) ?
+				request.getParameter("page"):("login"));
+		
 		System.out.println("로그인커맨드"+request.getServletPath());
 		
 		

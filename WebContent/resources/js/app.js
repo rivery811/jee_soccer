@@ -43,7 +43,7 @@ var playerService = (()=>{
 				}else{
 					alert('입력한 아이디값'+$('#username').val()+$('#userid').val());
 					$('#login_form').attr('action','/jee-soccer/player.do');
-					$('#login_form').submit();
+					$('#login_form').submit();	
 				}
 				
 			});

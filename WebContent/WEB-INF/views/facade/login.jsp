@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <jsp:include page="../common/head.jsp"/>
+    
  <div></div>   
 	<div>
 	<img id="soccer-ball" src="${img}/soccer-ball.jpg" alt="" />
@@ -30,7 +30,7 @@
 		</div>
 		
 		<input type="hidden" name = "action" value ="login"/>
-		<input type="hidden" name = "page" value ="home"/>
+		<input type="hidden" name = "page" value ="main"/>
 	
 	</form>
 	</div>
@@ -43,7 +43,7 @@
 
 	
 	
-<jsp:include page = "../common/foot.jsp"/>
+
 
 <script>
 app.init('${ctx}');

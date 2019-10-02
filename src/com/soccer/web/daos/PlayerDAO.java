@@ -9,7 +9,7 @@ import com.soccer.web.domains.TeamBean;
 
 public interface PlayerDAO {
 	
-
+	public boolean insertPlayer(PlayerBean param);
 	public PlayerBean selectByplayeridsolar(PlayerBean param);
 	public List<String> selectPositions() ;
 	public List<PlayerBean> selectByTeamidPosition(PlayerBean param);

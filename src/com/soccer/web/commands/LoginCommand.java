@@ -29,13 +29,21 @@ public class LoginCommand extends Command{
 		//System.out.println("디비에서 커맨드로 전달된 로그인객체"+param.toString());
 
 			
-		setPage((param!=null) ?
-				request.getParameter("page"):("login"));
+		//setPage((param!=null) ?request.getParameter("page"):("main"));
 		
 		System.out.println("로그인커맨드"+request.getServletPath());
+		if(param!=null) {
+			this.view = String.format(Constants.DOUBLE_PATH, "player","main");
+		}else {
+			this.view = String.format(Constants.DOUBLE_PATH, "facade","main");
+		}
+
 		
 		
-	   super.execute();
+		//request.setAttribute("page", request.getParameter("page"));
+		//this.view = String.format(Constants.DOUBLE_PATH, "player",page);
+		
+	   
 
 	}
 

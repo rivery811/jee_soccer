@@ -1,5 +1,6 @@
 package com.soccer.web.controller;
 
+import com.soccer.web.enums.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class PlayerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println("컨트롤러진입");
+	System.out.println("플레이어컨트롤러진입");
 	System.out.println(request.getParameter("playerId"));
 	System.out.println(request.getParameter("solar"));
 	System.out.println(request.getParameter("action"));
@@ -32,8 +33,16 @@ public class PlayerController extends HttpServlet {
 		//Commander commander = new Commander();
 		Reciever.init(request);
        // Reciever.command.execute();
-	
-		
+		System.out.println("플레이어 컨트롤러스위치직전");
+		switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
+		case CREATE: request.setAttribute("page", "login");
+			break;
+		case LOGIN: request.setAttribute("page", "login");
+			break;
+
+		}
+
+		System.out.println("플레이어 컨트롤러센더직전");
 		Sender.forward(request, response);
 
 	

@@ -23,8 +23,37 @@ public class PlayerDAOImpl implements PlayerDAO{
 	private PlayerDAOImpl() {}
 	
 	@Override
+	public boolean insertPlayer(PlayerBean param) {
+		System.out.println("다오진입createPlayer");
+		boolean flag = false;
+		try {
+			String sql = "INSERT INTO PLAYER(PLAYER_ID,SOLAR,TEAM_ID,PLAYER_NAME)\r\n" + 
+					"VALUES(?,?,'K03','김광진')";
+			PreparedStatement stmt =DatabaseFactory
+					.createDatabase(Constants.VENDOR)
+					.getConnection()
+					.prepareStatement(sql);
+			
+			 stmt.setString(1, param.getPlayerId());
+			 stmt.setString(2, param.getSolar());
+			 
+			 int rs = stmt.executeUpdate();
+			// flag =(rs == 1) ? true: false;
+			 flag =(rs == 1) ;
+		
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		System.out.println("회원가입결과"+flag);
+		return flag;
+		
+	}
+	
+	@Override
 	public PlayerBean selectByplayeridsolar(PlayerBean param) {
-		System.out.println("다오진입");
+		System.out.println("다오진입selectByplayeridsolar");
 		PlayerBean player = null;
 		String sql = "SELECT * FROM PLAYER\r\n" + 
 				"WHERE PLAYER_ID LIKE ?\r\n" + 
@@ -120,6 +149,7 @@ public class PlayerDAOImpl implements PlayerDAO{
 		}
 		return players;
 	}
+
 
 	
 }

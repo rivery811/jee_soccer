@@ -4,6 +4,9 @@ var app = (()=>{
 			playerService.login(ctx);	
 			playerService.join(ctx);
 			playerService.moveJoin(ctx);
+			playerService.searchposition(ctx);
+			playerService.search4(ctx);
+			playerService.search5(ctx);
 	
 
 		
@@ -59,6 +62,7 @@ var playerService = (()=>{
 					alert('필수값이 없음');
 				}else{
 					$('#join_form').attr('action',ctx+'/player.do');
+					$('#join_form').attr('method','POST');
 					$('#join_form').submit();	
 				}
 
@@ -69,7 +73,40 @@ var playerService = (()=>{
 				alert('회원가입이동');
 				location.assign(ctx+'/facade.do?action=move&page=join');
 			});
-		}
+		},
+
+		
+		searchposition:(ctx)=>{
+			$('#btn2').click(()=>{
+				location.assign(ctx+'/player.do?action=search&page=main&word=find2')	
+			});
+			
+			$('#a_ans2').click(()=>{
+				location.assign(ctx+'/player.do?action=search&page=main&word=main')	
+			});
+				
+		},
+		
+		search4:(ctx)=>{
+			$('#btn4').click(()=>{
+				$('#btn4_form').submit();	
+
+			});
+			
+			$('#a_ans4').click(()=>{
+				location.assign(ctx+'/player.do?action=search&page=main&word=main')	
+			});
+			
+		},
+		
+		search5:(ctx)=>{
+			$('#btn5').click(()=>{
+				$('#btn5_form').submit();	
+
+			});
+			
+		},
+		
 
 
 

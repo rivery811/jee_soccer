@@ -13,7 +13,7 @@ public class Commander {
 			o= new CreateCommand(request);
 			break;
 		case SEARCH:
-			o = new SearchCommand();
+			o = new SearchCommand(request);
 			break;
 		case UPADTE:
 			

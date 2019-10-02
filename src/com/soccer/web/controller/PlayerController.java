@@ -28,6 +28,8 @@ public class PlayerController extends HttpServlet {
 	System.out.println("플레이어컨트롤러진입");
 	System.out.println(request.getParameter("playerId"));
 	System.out.println(request.getParameter("solar"));
+	System.out.println(request.getParameter("teamId"));
+	System.out.println(request.getParameter("position"));
 	System.out.println(request.getParameter("action"));
 	System.out.println(request.getParameter("page"));
 		//Commander commander = new Commander();
@@ -39,8 +41,14 @@ public class PlayerController extends HttpServlet {
 			break;
 		case LOGIN: request.setAttribute("page", "login");
 			break;
-
+				
 		}
+		request.setAttribute("word", 
+				request.getParameter("word")==null
+					?"main"
+						:request.getParameter("word"));
+		System.out.println("단어"+request.getAttribute("word"));
+
 
 		System.out.println("플레이어 컨트롤러센더직전");
 		Sender.forward(request, response);

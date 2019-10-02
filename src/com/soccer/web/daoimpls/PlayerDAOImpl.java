@@ -13,6 +13,7 @@ import com.soccer.web.daos.PlayerDAO;
 import com.soccer.web.domains.PlayerBean;
 import com.soccer.web.factory.DatabaseFactory;
 import com.soccer.web.pool.Constants;
+import com.sun.org.apache.regexp.internal.recompile;
 import com.soccer.web.enums.*;
 
 public class PlayerDAOImpl implements PlayerDAO{
@@ -120,13 +121,66 @@ public class PlayerDAOImpl implements PlayerDAO{
 
 	@Override
 	public List<PlayerBean> selectByTeamidPosition(PlayerBean param) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PlayerBean> players = new ArrayList<PlayerBean>();
+		
+		try {
+			String sql="SELECT PLAYER_ID,PLAYER_NAME\r\n" + 
+					"FROM PLAYER \r\n" + 
+					"WHERE TEAM_ID LIKE ?\r\n" + 
+					"AND POSITION LIKE ?";
+			PreparedStatement stmt = DatabaseFactory
+					.createDatabase(Constants.VENDOR)
+					.getConnection().prepareStatement(sql);
+			stmt.setString(1, param.getTeamId());
+			stmt.setString(2, param.getPosition());
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				PlayerBean player = new PlayerBean();
+				player.setPlayerId(rs.getString(1));
+				player.setPlayerName(rs.getString(2));
+				
+				players.add(player);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return players;
 	}
 	@Override
 	public List<PlayerBean> selectByTeamidHeightName(PlayerBean param) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PlayerBean> players = new ArrayList<PlayerBean>();
+		try {
+			String sql = "SELECT PLAYER_NAME,POSITION\r\n" + 
+					"FROM PLAYER \r\n" + 
+					"WHERE TEAM_ID LIKE ?\r\n" + 
+					"AND HEIGHT LIKE ?\r\n" + 
+					"AND PLAYER_NAME LIKE ?";
+			PreparedStatement stmt = DatabaseFactory
+					.createDatabase(Constants.VENDOR)
+					.getConnection().prepareStatement(sql);
+			stmt.setString(1, param.getTeamId());
+			stmt.setString(2, param.getHeight());
+			stmt.setString(3, param.getPlayerName()+"%");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				PlayerBean player = new PlayerBean();
+				player.setPlayerName(rs.getString(1));
+				player.setPosition(rs.getString(2));
+				
+				
+				players.add(player);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return players;
 	}
 	@Override
 	public List<PlayerBean> selectByMany(PlayerBean param) {
